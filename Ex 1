@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head >
+        <title>Animals</title></head>
+    <body><center>
+        <style>
+        body{
+            color:White;
+            background-color: black;
+            font-size: 20px;
+            font-family: Cursive;
+        }
+    </style>
+
+<h1>The map and area elements</h1>
+
+<p>Click on the Animals,to read more about the topic:</p>
+
+<img src ="animals.jpg" alt ="could'nt display" usemap ="#workmap" height="360" width="800">
+   <map name = "workmap">    
+<area shape="rect" coords="294,268,402,354" alt="lion" href="lion.html">
+<area shape="rect" coords="222,97,469,196" alt="elephant" href="elephant.html">    
+<area shape="rect" coords="684,279,777,342" alt="deer" href="deer.html">
+   
+</map>
+
+
+</center></body>
+</html>
