@@ -1,0 +1,102 @@
+//SET 2
+
+--> 1.To count the occurrence of 3 letter words
+function listThreeLetterWords(sentence) {
+    let words = sentence.split(' ');
+    let threeLetterWords = [];
+    for (let i = 0; i < words.length; i++) {
+        if (words[i].length === 3) {
+            threeLetterWords.push(words[i]);
+        }
+    }
+    return threeLetterWords;
+}
+let userInput = prompt("Enter a sentence:");
+let threeLetterWordsList = listThreeLetterWords(userInput);
+console.log("Three-letter words in the sentence:", threeLetterWordsList);
+
+
+--> 2. To print the second largest and smallest element in an array
+function findSecondLargestAndSmallest(arr) {
+    if (arr.length < 2) {
+        console.log("Array should have at least two elements.");
+        return;
+    }
+    arr.sort(function(a, b) {
+        return a - b;
+    });
+    let secondSmallest = arr[1];
+    let secondLargest = arr[arr.length - 2];
+    console.log("Second smallest element:", secondSmallest);
+    console.log("Second largest element:", secondLargest);
+}
+let input = prompt("Enter array elements separated by commas:");
+let array = input.split(',').map(Number);
+findSecondLargestAndSmallest(array);
+
+
+--> 3. To calculate the perimeter and area of the circle
+let circle = {
+    radius: 0,
+    calculateArea: function() {
+        return Math.PI * this.radius * this.radius;
+    },
+    calculatePerimeter: function() {
+        return 2 * Math.PI * this.radius;
+    }
+};
+let radiusInput = prompt("Enter the radius of the circle:");
+circle.radius = parseFloat(radiusInput);
+if (isNaN(circle.radius) || circle.radius <= 0) {
+    console.log("Invalid radius. Please enter a positive number.");
+} else {
+    let area = circle.calculateArea();
+    let perimeter = circle.calculatePerimeter();
+    console.log("Area of the circle:", area.toFixed(2));
+    console.log("Perimeter of the circle:", perimeter.toFixed(2));
+}
+
+
+--> 4. To create a webpage using specified conditions
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+</head>
+<body>
+    <script>
+        let userName = prompt("Please enter your name:");
+        
+        alert("Welcome, " + userName + "!");
+        
+        let currentDate = new Date();
+        let options = { month: 'long', day: 'numeric', year: 'numeric' };
+        let formattedDate = currentDate.toLocaleDateString('en-US', options);
+        document.write("<p>Current Date: " + formattedDate + "</p>");
+      
+        let lastModifiedDate = document.lastModified;
+        document.write("<p>Last Modified Date: " + lastModifiedDate + "</p>");
+    </script>
+</body>
+</html>
+
+--> 5. Style rule
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Effect</title>
+    <style>
+        /* Style rule for paragraph */
+        p:hover {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <p>Move your mouse over this paragraph to see the background color change to yellow.</p>
+</body>
+</html>
