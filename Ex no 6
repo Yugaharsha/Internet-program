@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html >
+<head>
+</head>
+<body> 
+<textarea id="myTextarea"></textarea> 
+<button onclick="countTextLength()">Count Length</button> 
+<p id="lengthDisplay">
+</p>
+<script> 
+function countTextLength() {
+var textarea = document.getElementById("myTextarea"); 
+var text = textarea.value; var length = text.length;
+document.getElementById("lengthDisplay").innerHTML = "Length of text: " + length; }
+</script>
+</body> 
+</html>
+
+
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js">
+</script>
+
+<script>
+$(document).ready(function(){
+    $("div").hover(function(){
+       $(this).css("opacity", "1.0");
+    }, function(){
+       $(this).css("opacity", "0.4");
+    });
+});
+</script>
+
+</head>
+<body>
+
+<div style="background-color: pink;">the colour of the element is changed using jquery and hovor.</div>
+
+</body>
+</html>
+
+
+
