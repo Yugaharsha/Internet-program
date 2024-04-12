@@ -1,0 +1,93 @@
+
+<%@page import="java.util.*"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="newpackage.Products" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Product Information</title>
+    <style>
+        body{
+            margin-left: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Information</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Instock</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+     <% 
+            ArrayList<Products> al = new ArrayList<Products>();
+             al.add(new Products("Soap",200.0,"Yes"));
+             al.add(new Products("Paste",250.50,"No"));
+               al.add(new Products("Shampoo",500.10,"No"));
+             al.add(new Products("Slipper",100.00,"Yes"));
+               al.add(new Products("Oil",900.12,"Yes"));
+             al.add(new Products("MouthWash",75.50,"No"));
+             
+             pageContext.setAttribute("pro", al);
+
+    %>   
+     
+            <c:forEach var="pro" items="${pageScope.pro}" varStatus="status">
+                <tr>
+                    <td>${pro.getname()}</td>
+                    <td>${pro.getprice()}</td>
+                    <td>${pro.getinstock()}</td>
+                    
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+    
+    
+    <h1>Sorted Product Information</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Instock</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+          
+             Collections.sort(al,new Comparator<Products>(){
+                 public int compare(Products p1,Products p2){
+              
+                     return (int)p2.getprice() -(int)p1.getprice();
+                             }
+                             });
+                                      
+             
+             pageContext.setAttribute("pro2", al);
+    %>      
+
+            
+            
+            <c:forEach var="pro2" items="${pageScope.pro2}" varStatus="status">
+                <tr>
+                    <td>${pro2.getname()}</td>
+                    <td>${pro2.getprice()}</td>
+                    <td>${pro2.getinstock()}</td>
+                    
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+
+</body>
+</html>
