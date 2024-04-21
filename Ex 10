@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle Rental System</title>
+</head>
+<body>
+    <h2>Vehicle Rental System</h2>
+
+    <?php
+    class Vehicle {
+        private $make;
+        private $model;
+        private $year;
+        private $rentalPrice;
+        private $available;
+
+        public function __construct($make, $model, $year, $rentalPrice) {
+            $this->make = $make;
+            $this->model = $model;
+            $this->year = $year;
+            $this->rentalPrice = $rentalPrice;
+            $this->available = true;
+        }
+
+        public function getMake() {
+            return $this->make;
+        }
+
+        public function getModel() {
+            return $this->model;
+        }
+
+        public function getYear() {
+            return $this->year;
+        }
+
+        public function getRentalPrice() {
+            return $this->rentalPrice;
+        }
+
+        public function isAvailable() {
+            return $this->available;
+        }
+
+        public function rent() {
+            if ($this->available) {
+                $this->available = false;
+                echo "<p>Vehicle {$this->make} {$this->model} rented successfully.</p>";
+            } else {
+                echo "<p>Sorry, this vehicle is already rented.</p>";
+            }
+        }
+
+        public function returnVehicle() {
+            if (!$this->available) {
+                $this->available = true;
+                echo "<p>Vehicle {$this->make} {$this->model} returned successfully.</p>";
+            } else {
+                echo "<p>This vehicle is not currently rented.</p>";
+            }
+        }
+
+        public function calculateRentalFee($days) {
+            if ($days > 0) {
+                return $this->rentalPrice * $days;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    // Usage example:
+    $vehicle1 = new Vehicle("Toyota", "Corolla", 2020, 50);
+    $vehicle2 = new Vehicle("Honda", "Civic", 2019, 60);
+
+    echo "<h3>Vehicle Information</h3>";
+    echo "<p>Vehicle 1: {$vehicle1->getYear()} {$vehicle1->getMake()} {$vehicle1->getModel()}</p>";
+    echo "<p>Rental Price per day: $ {$vehicle1->getRentalPrice()}</p>";
+
+    echo "<h3>Actions</h3>";
+    $vehicle1->rent();
+    $vehicle1->rent(); // Try to rent again
+    $vehicle1->returnVehicle();
+
+    $rentalDays = 5;
+    $rentalFee = $vehicle1->calculateRentalFee($rentalDays);
+    echo "<p>Rental Fee for {$rentalDays} days: $ {$rentalFee}</p>";
+    ?>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grade Converter</title>
+</head>
+<body>
+    <h2>Grade Converter</h2>
+
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        Enter your numerical grade: <input type="text" name="grade" />
+        <input type="submit" value="Convert" />
+    </form>
+
+    <?php
+    // Check if the form is submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Retrieve the numerical grade input from the form
+        $numerical_grade = $_POST['grade'];
+
+        // Function to convert numerical grade to letter grade
+        function convertGrade($grade) {
+            if ($grade >= 90) {
+                return 'A';
+            } elseif ($grade >= 80) {
+                return 'B';
+            } elseif ($grade >= 70) {
+                return 'C';
+            } elseif ($grade >= 60) {
+                return 'D';
+            } else {
+                return 'F';
+            }
+        }
+
+        // Validate and convert the grade
+        if (is_numeric($numerical_grade)) {
+            $letter_grade = convertGrade($numerical_grade);
+            echo "<p>Your numerical grade of $numerical_grade corresponds to a letter grade of $letter_grade.</p>";
+        } else {
+            echo "<p>Please enter a valid numerical grade.</p>";
+        }
+    }
+    ?>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sum of Digits Calculator</title>
+</head>
+<body>
+    <h2>Sum of Digits Calculator</h2>
+
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        Enter a number: <input type="text" name="number" />
+        <input type="submit" value="Calculate Sum" />
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $input_number = $_POST['number'];
+
+        if (is_numeric($input_number) && $input_number >= 0 && strpos($input_number, '.') === false) {
+            $number = (int)$input_number;
+            $sum_of_digits = 0;
+
+            while ($number > 0) {
+                $digit = $number % 10;
+                $sum_of_digits += $digit;
+                $number = (int)($number / 10);
+            }
+
+            echo "<p>The sum of digits of $input_number is $sum_of_digits.</p>";
+        } else {
+            echo "<p>Please enter a valid non-negative integer.</p>";
+        }
+    }
+    ?>
+
+</body>
+</html>
